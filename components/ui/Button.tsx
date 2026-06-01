@@ -21,6 +21,7 @@ const variants: Record<string, string> = {
     "border-2 border-primary text-primary hover:bg-primary hover:text-white active:scale-[0.98]",
   ghost:
     "text-slate-muted hover:text-charcoal hover:bg-stone active:scale-[0.98]",
+  none: "",
 };
 
 const sizes: Record<string, string> = {

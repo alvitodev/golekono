@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Receipt, CalendarDays, RotateCcw } from "lucide-react";
+import { Receipt, CalendarDays, RotateCcw, Sparkles } from "lucide-react";
 import { formatRupiah } from "@/lib/formatters";
 import Button from "@/components/ui/Button";
 import type { SummarySectionProps } from "@/types";
@@ -21,8 +21,9 @@ export default function SummarySection({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         {/* Info */}
         <div className="space-y-4">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold">
-            Itinerary Anda Siap! 🎉
+          <h2 className="font-display text-2xl sm:text-3xl font-bold flex items-center gap-2">
+            <span>Itinerary Anda Siap!</span>
+            <Sparkles className="h-6 w-6 text-accent animate-pulse shrink-0" />
           </h2>
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">

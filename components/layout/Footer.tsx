@@ -1,4 +1,4 @@
-import { MapPin, Heart } from "lucide-react";
+import { MapPin, Heart, Cpu, Activity, Route } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -52,10 +52,19 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
               Teknologi
             </h3>
-            <ul className="space-y-2 text-sm">
-              <li>🤖 Machine Learning & NLP</li>
-              <li>📊 Sentiment Analysis</li>
-              <li>🗺️ Smart Route Planning</li>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-2">
+                <Cpu className="h-4 w-4 text-primary-light" />
+                <span>Machine Learning & NLP</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Activity className="h-4 w-4 text-primary-light" />
+                <span>Sentiment Analysis</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Route className="h-4 w-4 text-primary-light" />
+                <span>Smart Route Planning</span>
+              </li>
             </ul>
           </div>
         </div>

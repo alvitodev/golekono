@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Leaf, Landmark, GraduationCap, FerrisWheel, ShoppingBag } from "lucide-react";
 import { INTEREST_OPTIONS } from "@/lib/constants";
 import type { InterestCategory } from "@/types";
 
@@ -8,6 +9,14 @@ interface InterestPillsProps {
   selected: InterestCategory[];
   onChange: (selected: InterestCategory[]) => void;
 }
+
+const iconMap: Record<InterestCategory, React.ComponentType<{ className?: string }>> = {
+  Alam: Leaf,
+  Budaya_Dan_Sejarah: Landmark,
+  Edukasi: GraduationCap,
+  Taman_Hiburan: FerrisWheel,
+  Pusat_Perbelanjaan: ShoppingBag,
+};
 
 export default function InterestPills({
   selected,
@@ -32,6 +41,8 @@ export default function InterestPills({
       <div className="flex flex-wrap gap-2.5">
         {INTEREST_OPTIONS.map((option) => {
           const isActive = selected.includes(option.value);
+          const IconComponent = iconMap[option.value];
+          
           return (
             <motion.button
               key={option.value}
@@ -48,7 +59,13 @@ export default function InterestPills({
                 }
               `}
             >
-              <span className="text-base">{option.emoji}</span>
+              {IconComponent && (
+                <IconComponent
+                  className={`h-4 w-4 transition-colors duration-200 ${
+                    isActive ? "text-white" : "text-primary"
+                  }`}
+                />
+              )}
               <span>{option.label}</span>
             </motion.button>
           );
