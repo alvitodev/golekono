@@ -101,8 +101,10 @@ export default function PreferenceForm({
     onPreferencesChange({ ...preferences, [key]: value });
   };
 
-  const isSuasanaGibberish = preferences.suasana ? isGibberish(preferences.suasana) : false;
-  const isValid = preferences.minat.length > 0 && preferences.budget > 0 && !isSuasanaGibberish;
+  const trimmedSuasana = preferences.suasana ? preferences.suasana.trim() : "";
+  const isSuasanaTooShort = trimmedSuasana.length > 0 && trimmedSuasana.length < 4;
+  const isSuasanaGibberish = trimmedSuasana ? isGibberish(trimmedSuasana) : false;
+  const isValid = preferences.minat.length > 0 && preferences.budget > 0 && !isSuasanaGibberish && !isSuasanaTooShort;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,7 +123,9 @@ export default function PreferenceForm({
     if (preferences.budget === 0) {
       missing.push("Atur Budget Maksimal per Tempat lebih dari Rp 0.");
     }
-    if (isSuasanaGibberish) {
+    if (isSuasanaTooShort) {
+      missing.push("Masukkan kalimat preferensi suasana yang lebih panjang (minimal 4 karakter).");
+    } else if (isSuasanaGibberish) {
       missing.push("Masukkan kalimat preferensi suasana yang benar (bukan acak/keyboard smash).");
     }
     setMissingItems(missing);
@@ -179,7 +183,9 @@ export default function PreferenceForm({
               value={preferences.suasana || ""}
               onChange={(value: string) => updateField("suasana", value)}
               error={
-                isSuasanaGibberish
+                isSuasanaTooShort
+                  ? "Kalimat preferensi terlalu pendek (minimal 4 karakter)"
+                  : isSuasanaGibberish
                   ? "Masukkan kalimat preferensi suasana hati yang benar (hindari ketikan acak/keyboard smashing)"
                   : null
               }

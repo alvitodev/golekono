@@ -56,18 +56,10 @@ export default function PlannerPage() {
         {/* Premium heritage background effects for visual richness */}
         <div className="absolute inset-0 pointer-events-none -z-10">
           {/* Soft analogous gradient orbs */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px]" />
 
-          {/* Elegant dot-grid structured paper texture */}
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage: `radial-gradient(circle, #C45C3C 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
         </div>
 
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
