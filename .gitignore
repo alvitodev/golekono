@@ -1,0 +1,19 @@
+# Backend
+backend-golekono/.env
+backend-golekono/.venv/
+backend-golekono/__pycache__/
+backend-golekono/*.pyc
+
+# Frontend
+frontend-golekono/.next/
+frontend-golekono/node_modules/
+frontend-golekono/tsconfig.tsbuildinfo
+frontend-golekono/.env.local
+frontend-golekono/.env.production
+frontend-golekono/.env.development
+frontend-golekono/.venv/
+
+# Ignore all other markdown documentation files (except README) to avoid AI traces
+**/*.md
+!**/README.md
+
