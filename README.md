@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Golekono Frontend
 
-## Getting Started
+Frontend modern berbasis Next.js (TypeScript) untuk aplikasi rancang itinerary wisata pintar Golekono di Yogyakarta.
 
-First, run the development server:
+## Persyaratan Sistem
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js versi 18.0 atau versi di atasnya
+- npm, yarn, pnpm, atau bun sebagai package manager
+- Python 3.10 atau versi di atasnya (opsional, jika ingin mengaktifkan virtual environment di folder ini)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Struktur Folder Utama
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `app/`: Routing halaman Next.js (termasuk halaman utama dan perencana).
+- `components/`: Komponen UI modular (landing page, layout, form perencana, dll).
+- `lib/`: Data mock, formatters, konstanta, dan koneksi API.
+- `types/`: Definisi tipe data TypeScript.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Cara Setup dan Menjalankan Aplikasi
 
-## Learn More
+1. Masuk ke direktori frontend:
+   ```bash
+   cd frontend-golekono
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Hubungkan dengan Django ML Backend:
+   Pastikan backend Django berjalan di port `8000` (http://localhost:8000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Install Node dependencies:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Jalankan development server:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+Aplikasi frontend akan aktif di http://localhost:3000.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Menggunakan Virtual Environment (Venv)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Jika Anda ingin mengaktifkan venv di folder ini secara bersamaan untuk kebutuhan utilitas Python:
+
+1. Buat virtual environment:
+   ```bash
+   python -m venv .venv
+   ```
+
+2. Aktifkan venv:
+   - Windows:
+     ```bash
+     .venv\Scripts\activate
+     ```
+   - macOS/Linux:
+     ```bash
+     source .venv/bin/activate
+     ```
+
+3. Pasang requirements jika diperlukan:
+   ```bash
+   pip install -r requirements.txt
+   ```

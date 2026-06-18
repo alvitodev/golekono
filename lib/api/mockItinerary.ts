@@ -8,7 +8,8 @@ export async function generateItinerary(
   preferences: UserPreferences
 ): Promise<ItineraryResponse> {
   try {
-    const response = await fetch("http://localhost:8000/api/itinerary/", {
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const response = await fetch(`${backendUrl}/api/itinerary/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

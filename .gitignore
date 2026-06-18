@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Ignore all other markdown documentation files (except README) to avoid AI traces
+*.md
+!README.md
+
+
