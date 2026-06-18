@@ -30,10 +30,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section
-      id="how-it-works"
-      className="relative py-24 sm:py-32"
-    >
+    <section id="how-it-works" className="relative py-24 sm:py-32">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-stone to-transparent" />
@@ -61,18 +58,11 @@ export default function FeaturesSection() {
         </motion.div>
 
         {/* Feature cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 relative z-10">
           {features.map((feature, index) => (
-            <FeatureCard
-              key={feature.step}
-              {...feature}
-              delay={index * 0.15}
-            />
+            <FeatureCard key={feature.step} {...feature} delay={index * 0.15} />
           ))}
         </div>
-
-        {/* Connecting line (desktop only) */}
-        <div className="hidden md:block absolute top-[60%] left-[20%] right-[20%] h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent -z-0" />
       </div>
     </section>
   );
