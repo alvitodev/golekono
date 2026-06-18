@@ -11,11 +11,12 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
     return {
       beforeFiles: [
         {
           source: "/api/:path*",
-          destination: "https://backend-golekono.vercel.app/api/:path*",
+          destination: `${apiUrl}/api/:path*`,
         },
       ],
     };
