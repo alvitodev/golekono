@@ -1,16 +1,15 @@
 import type { UserPreferences, ItineraryResponse } from "@/types";
 
 /**
- * Fetch recommendation itinerary from Django ML backend.
- * Connects to http://localhost:8000/api/itinerary/.
+ * Fetch recommendation itinerary from Django ML backend via API proxy.
+ * Makes a POST request to /api/generate which is rewritten to the Django backend.
  */
 export async function generateItinerary(
-  preferences: UserPreferences
+  preferences: UserPreferences,
 ): Promise<ItineraryResponse> {
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    console.log("Fetching itinerary from URL:", `${backendUrl}/api/itinerary/`);
-    const response = await fetch(`${backendUrl}/api/itinerary/`, {
+    console.log("Fetching itinerary from /api/generate");
+    const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,13 +19,15 @@ export async function generateItinerary(
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      throw new Error(
+        errorData.message || `HTTP error! status: ${response.status}`,
+      );
     }
 
     const data: ItineraryResponse = await response.json();
     return data;
   } catch (error) {
-    console.error("Backend connection error. Check if Django is running:", error);
+    console.error("Failed to generate itinerary:", error);
     throw error;
   }
 }
