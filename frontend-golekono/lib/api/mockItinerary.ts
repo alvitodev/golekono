@@ -12,7 +12,9 @@ export async function generateItinerary(
     // Get backend URL from environment variable (set at build time or defaults to localhost)
     const backendUrl =
       process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    const apiEndpoint = `${backendUrl}/api/itinerary`;
+    // Note: Backend endpoint requires trailing slash (/api/itinerary/)
+    // Without it, Django redirects with GET method instead of POST
+    const apiEndpoint = `${backendUrl}/api/itinerary/`;
 
     console.log("Fetching itinerary from:", apiEndpoint);
     console.log("Backend URL:", backendUrl);
