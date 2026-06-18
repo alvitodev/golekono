@@ -39,9 +39,13 @@ export default function PlannerPage() {
         setApiError(
           "Batas limit kueri terlampaui. Harap tunggu 1 menit sebelum mencoba lagi.",
         );
+      } else if (err.message && err.message.includes("redirect")) {
+        setApiError(
+          "Redirect loop terdeteksi. Pastikan NEXT_PUBLIC_API_URL di Vercel adalah URL backend yang benar, lalu trigger redeploy (jangan hanya save env var).",
+        );
       } else {
         setApiError(
-          "Gagal menghubungi server rekomendasi AI. Periksa konfigurasi NEXT_PUBLIC_API_URL dan pastikan backend aktif.",
+          "Gagal menghubungi backend. Cek browser console untuk log endpoint URL. Pastikan backend aktif dan NEXT_PUBLIC_API_URL benar.",
         );
       }
     }

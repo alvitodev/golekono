@@ -10,17 +10,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-    return {
-      beforeFiles: [
-        {
-          source: "/api/:path*",
-          destination: `${apiUrl}/api/:path*`,
-        },
-      ],
-    };
-  },
+  // Don't use rewrites to external URLs (causes redirect loops)
+  // Instead, use dynamic fetch in the API layer with env variable
 };
 
 export default nextConfig;
