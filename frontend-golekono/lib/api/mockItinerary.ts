@@ -8,7 +8,9 @@ export async function generateItinerary(
   preferences: UserPreferences
 ): Promise<ItineraryResponse> {
   try {
-    const response = await fetch("http://localhost:8000/api/itinerary/", {
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    console.log("Fetching itinerary from URL:", `${backendUrl}/api/itinerary/`);
+    const response = await fetch(`${backendUrl}/api/itinerary/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +19,8 @@ export async function generateItinerary(
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
     const data: ItineraryResponse = await response.json();
