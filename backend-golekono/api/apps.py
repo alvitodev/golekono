@@ -20,6 +20,17 @@ class ApiConfig(AppConfig):
             self.ml_models['le'] = joblib.load(os.path.join(model_dir, 'label_encoder.joblib'))
             self.ml_models['logreg'] = joblib.load(os.path.join(model_dir, 'sentiment_logreg.joblib'))
             
+            # Load Keras Neural Network model with fallback to logreg
+            try:
+                import tensorflow as tf
+                self.ml_models['keras_model'] = tf.keras.models.load_model(
+                    os.path.join(model_dir, 'sentiment_nn.keras')
+                )
+                print("[ML AppConfig] Keras Neural Network loaded in memory successfully!")
+            except (ImportError, Exception) as e:
+                print(f"[ML AppConfig] Warning: Failed to load Keras model ({e}). Fallback to LogReg will be used.")
+                self.ml_models['keras_model'] = None
+            
             # Load content-based filtering elements
             self.ml_models['cosine_sim'] = np.load(os.path.join(model_dir, 'cosine_similarity_matrix.npy'))
             

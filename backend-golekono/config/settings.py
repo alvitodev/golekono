@@ -9,7 +9,13 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-golekono-mlops-backend-key-change-in-prod')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.hf.space',
+    'alvitodev-backend-golekono-a.hf.space',
+    '.vercel.app',
+]
 
 
 # Application definition
@@ -100,4 +106,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS Config
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
+]
+
+# CSRF Config
+CSRF_TRUSTED_ORIGINS = [
+    'https://alvitodev-backend-golekono-a.hf.space',
+    'https://*.hf.space',
+]

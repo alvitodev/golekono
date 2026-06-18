@@ -10,8 +10,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Don't use rewrites to external URLs (causes redirect loops)
-  // Instead, use dynamic fetch in the API layer with env variable
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://alvitodev-backend-golekono-a.hf.space/api/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

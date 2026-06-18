@@ -848,7 +848,21 @@ def get_itinerary(request):
         sentiment_label = "Positif" # default
         if suasana.strip():
             X_text = tfidf.transform([suasana])
-            pred_idx = logreg.predict(X_text)[0]
+            keras_model = api_app.ml_models.get('keras_model')
+            
+            if keras_model is not None:
+                # Convert TF-IDF sparse matrix to dense array for Keras
+                X_dense = X_text.toarray()
+                pred_probs = keras_model.predict(X_dense)
+                
+                # Check output shape to map prediction indices dynamically
+                if pred_probs.shape[1] == 1:
+                    pred_idx = int(pred_probs[0][0] > 0.5)
+                else:
+                    pred_idx = int(np.argmax(pred_probs, axis=-1)[0])
+            else:
+                pred_idx = logreg.predict(X_text)[0]
+                
             sentiment_label = le.inverse_transform([pred_idx])[0]
             # Record Prometheus metric
             SENTIMENT_COUNTER.labels(sentiment_label=sentiment_label).inc()
@@ -990,3 +1004,19 @@ def get_itinerary(request):
         
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+@csrf_exempt
+def health_check(request):
+    """
+    Check backend status and model loaded status. Used to detect cold starts.
+    """
+    if request.method != 'GET':
+        return JsonResponse({'status': 'error', 'message': 'Only GET method is allowed'}, status=405)
+        
+    api_app = apps.get_app_config('api')
+    keras_loaded = api_app.ml_models.get('keras_model') is not None
+    
+    return JsonResponse({
+        'status': 'ready',
+        'model_loaded': keras_loaded
+    })

@@ -11,3 +11,6 @@ nltk
 Sastrawi
 pymysql
 python-dotenv
+tensorflow
+gunicorn
+whitenoise
