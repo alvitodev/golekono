@@ -26,13 +26,17 @@ export default function Footer({ setCurrentView }: FooterProps) {
             <Link 
               href="/" 
               onClick={(e) => handleLinkClick("/", "home", e)}
-              className="inline-block transition-transform duration-200 hover:scale-102"
+              className="flex items-center gap-2 transition-transform duration-200 hover:scale-102"
             >
               <img 
                 src="/golekono logo.png" 
                 alt="GolekOno Logo" 
                 className="h-10 w-auto object-contain brightness-0 invert opacity-80"
               />
+              <span className="font-display text-xl font-bold tracking-tight flex items-center select-none">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-primary">Golek</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark">Ono</span>
+              </span>
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">
               AI-powered Smart Tourism & Itinerary Planner untuk Yogyakarta.

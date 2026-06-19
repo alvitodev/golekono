@@ -70,7 +70,11 @@ export default function HeroSection({ setCurrentView }: HeroSectionProps) {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="mt-6 text-lg sm:text-xl text-slate-muted max-w-2xl mx-auto leading-relaxed"
         >
-          GolekOno menganalisis ribuan ulasan pengunjung menggunakan{" "}
+          <span className="font-display font-extrabold tracking-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Golek</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark">Ono</span>
+          </span>{" "}
+          menganalisis ribuan ulasan pengunjung menggunakan{" "}
           <span className="font-semibold text-charcoal">NLP & Sentiment Analysis</span>{" "}
           untuk menyusun itinerary terbaik sesuai selera dan budget Anda.
         </motion.p>

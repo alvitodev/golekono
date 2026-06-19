@@ -53,13 +53,17 @@ export default function Navbar({ currentView = "home", setCurrentView }: NavbarP
           <Link 
             href="/" 
             onClick={(e) => handleLinkClick("/", "home", e)}
-            className="flex items-center group transition-transform duration-200 hover:scale-102"
+            className="flex items-center gap-2 group transition-transform duration-200 hover:scale-102"
           >
             <img 
               src="/golekono logo.png" 
               alt="GolekOno Logo" 
               className="h-11 sm:h-13 w-auto object-contain py-1"
             />
+            <span className="font-display text-2xl font-bold tracking-tight flex items-center select-none">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Golek</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark">Ono</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}
