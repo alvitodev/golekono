@@ -4,7 +4,21 @@ import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  setCurrentView?: (view: "home" | "planner" | "guide") => void;
+}
+
+export default function HeroSection({ setCurrentView }: HeroSectionProps) {
+  const handleStartPlanning = (e: React.MouseEvent) => {
+    if (setCurrentView) {
+      e.preventDefault();
+      setCurrentView("planner");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      const newUrl = "/?view=planner";
+      window.history.pushState({ path: newUrl }, "", newUrl);
+    }
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 sm:pt-32 md:pt-36">
       {/* Background decorative elements */}
@@ -13,7 +27,6 @@ export default function HeroSection() {
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px]" />
-
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
@@ -69,7 +82,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button href="/planner" size="lg">
+          <Button href="/planner" size="lg" onClick={handleStartPlanning}>
             Mulai Rancang Itinerary
             <ArrowRight className="h-5 w-5" />
           </Button>

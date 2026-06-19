@@ -1,20 +1,38 @@
-import { MapPin, Heart, Cpu, Activity, Route } from "lucide-react";
+import { Heart, Cpu, Activity, Route } from "lucide-react";
 import Link from "next/link";
 
-export default function Footer() {
+interface FooterProps {
+  currentView?: "home" | "planner" | "guide";
+  setCurrentView?: (view: "home" | "planner" | "guide") => void;
+}
+
+export default function Footer({ setCurrentView }: FooterProps) {
+  const handleLinkClick = (href: string, view: "home" | "planner" | "guide", e: React.MouseEvent) => {
+    if (setCurrentView) {
+      e.preventDefault();
+      setCurrentView(view);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      const newUrl = view === "home" ? "/" : `/?view=${view}`;
+      window.history.pushState({ path: newUrl }, "", newUrl);
+    }
+  };
+
   return (
-    <footer className="bg-charcoal text-white/70 mt-auto">
+    <footer className="bg-charcoal text-white/70 mt-auto border-t border-stone/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
-                <MapPin className="h-4 w-4" />
-              </div>
-              <span className="font-display text-lg font-bold text-white tracking-tight">
-                Golek<span className="text-primary-light">Ono</span>
-              </span>
+            <Link 
+              href="/" 
+              onClick={(e) => handleLinkClick("/", "home", e)}
+              className="inline-block transition-transform duration-200 hover:scale-102"
+            >
+              <img 
+                src="/golekono logo.png" 
+                alt="GolekOno Logo" 
+                className="h-10 w-auto object-contain brightness-0 invert opacity-80"
+              />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">
               AI-powered Smart Tourism & Itinerary Planner untuk Yogyakarta.
@@ -31,6 +49,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
+                  onClick={(e) => handleLinkClick("/", "home", e)}
                   className="text-sm hover:text-white transition-colors"
                 >
                   Beranda
@@ -39,9 +58,19 @@ export default function Footer() {
               <li>
                 <Link
                   href="/planner"
+                  onClick={(e) => handleLinkClick("/planner", "planner", e)}
                   className="text-sm hover:text-white transition-colors"
                 >
                   Planner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/guide"
+                  onClick={(e) => handleLinkClick("/guide", "guide", e)}
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  Panduan
                 </Link>
               </li>
             </ul>
@@ -54,15 +83,15 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Cpu className="h-4 w-4 text-primary-light" />
+                <Cpu className="h-4 w-4 text-accent" />
                 <span>Machine Learning & NLP</span>
               </li>
               <li className="flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary-light" />
+                <Activity className="h-4 w-4 text-accent" />
                 <span>Sentiment Analysis</span>
               </li>
               <li className="flex items-center gap-2">
-                <Route className="h-4 w-4 text-primary-light" />
+                <Route className="h-4 w-4 text-accent" />
                 <span>Smart Route Planning</span>
               </li>
             </ul>
@@ -75,7 +104,7 @@ export default function Footer() {
             © {new Date().getFullYear()} GolekOno. All rights reserved.
           </p>
           <p className="text-xs text-white/50 flex items-center gap-1">
-            Made with <Heart className="h-3 w-3 text-primary-light fill-primary-light" /> in Yogyakarta
+            Made with <Heart className="h-3 w-3 text-accent fill-accent" /> in Yogyakarta
           </p>
         </div>
       </div>

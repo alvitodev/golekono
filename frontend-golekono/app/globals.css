@@ -2,20 +2,20 @@
 
 /* ─── Jogja Heritage Design Tokens (Tailwind v4 @theme) ─── */
 @theme inline {
-  --color-primary: #C45C3C;
-  --color-primary-dark: #9E3A22;
-  --color-primary-light: #E8785C;
+  --color-primary: #2A8A30;
+  --color-primary-dark: #215A25;
+  --color-primary-light: #3FA847;
 
-  --color-secondary: #2D6A4F;
-  --color-secondary-light: #40916C;
+  --color-secondary: #1B4D22;
+  --color-secondary-light: #347A40;
 
-  --color-accent: #E9C46A;
-  --color-accent-dark: #D4A843;
+  --color-accent: #EBC66A;
+  --color-accent-dark: #D4A42C;
 
-  --color-sand: #FAF3E8;
-  --color-stone: #F5EDE3;
-  --color-charcoal: #2B2B2B;
-  --color-slate-muted: #6B7280;
+  --color-sand: #F4F7F4;
+  --color-stone: #E5ECE5;
+  --color-charcoal: #162518;
+  --color-slate-muted: #4D6050;
 
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
@@ -84,7 +84,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.15);
-  box-shadow: 0 3px 10px rgba(196, 92, 60, 0.3);
+  box-shadow: 0 3px 10px rgba(42, 138, 48, 0.3);
 }
 
 input[type="range"]::-moz-range-thumb {
