@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 
 export default function GuideView() {
-  const youtubeUrl = "https://www.youtube.com/embed/VTkNebVb9fM?start=248";
+  const youtubeUrl =
+    "https://www.youtube.com/embed/VTkNebVb9fM?si=CCwYiFHJsdHTYY8L&start=248";
 
   return (
     <section className="flex-1 pt-24 pb-16 relative overflow-hidden min-h-[70vh] flex flex-col items-center">
@@ -42,6 +43,8 @@ export default function GuideView() {
             title="Panduan Penggunaan GolekOno"
             className="w-full h-full"
             frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
         </motion.div>
