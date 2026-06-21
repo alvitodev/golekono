@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 
 export default function GuideView() {
-  const pdfUrl =
-    "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+  const youtubeUrl = "https://www.youtube.com/embed/VTkNebVb9fM?start=248";
 
   return (
     <section className="flex-1 pt-24 pb-16 relative overflow-hidden min-h-[70vh] flex flex-col items-center">
@@ -26,11 +25,12 @@ export default function GuideView() {
             Panduan Penggunaan GolekOno
           </h1>
           <p className="text-slate-muted mt-2 text-sm sm:text-base">
-            Pelajari cara menggunakan GolekOno untuk merencanakan perjalanan impian Anda di Yogyakarta.
+            Pelajari cara menggunakan GolekOno untuk merencanakan perjalanan
+            impian Anda di Yogyakarta.
           </p>
         </motion.div>
 
-        {/* PDF Embed directly */}
+        {/* YouTube Video Embed */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -38,7 +38,7 @@ export default function GuideView() {
           className="w-full rounded-2xl shadow-xl overflow-hidden border border-stone bg-white h-[75vh]"
         >
           <iframe
-            src={pdfUrl}
+            src={youtubeUrl}
             title="Panduan Penggunaan GolekOno"
             className="w-full h-full"
             frameBorder="0"
